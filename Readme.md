@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов» [![Build status][travis-image]][travis-url]
 
 * Студент: [Алексей Сивцов](https://up.htmlacademy.ru/react/3/user/905693).
-* Наставник: `Неизвестно`.
+* Наставник: [Николай Загорный](https://htmlacademy.ru/profile/id452233).
 
 ---
 
