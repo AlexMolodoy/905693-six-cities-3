@@ -1,9 +1,9 @@
 import React from "react";
-import {mainRender} from './main.jsx';
+import MainPage from './main.jsx';
 
 const App = () => {
   return (
-    <mainRender />
+    <MainPage />
   );
 };
 
