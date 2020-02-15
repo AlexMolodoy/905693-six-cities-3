@@ -1,9 +1,12 @@
 import React from "react";
 import MainPage from './main.jsx';
 
-const App = () => {
+const App = (props) => {
+  // eslint-disable-next-line react/prop-types
+  const {quantPlaces} = props;
+
   return (
-    <MainPage />
+    <MainPage quantPlaces={quantPlaces} />
   );
 };
 
