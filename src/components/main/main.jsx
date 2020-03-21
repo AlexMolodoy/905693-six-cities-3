@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Offer from '../offer/offer.jsx';
 
-const MainPage = ({quant, offerTitles}) => (
+const MainPage = ({quantPlaces, namesPlaces}) => (
   <React.Fragment>
     <div className="page page--gray page--main">
       <header className="header">
@@ -70,7 +70,7 @@ const MainPage = ({quant, offerTitles}) => (
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{quant} places to stay in Amsterdam</b>
+              <b className="places__found">{quantPlaces} places to stay in Amsterdam</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex="0">
@@ -95,7 +95,7 @@ const MainPage = ({quant, offerTitles}) => (
                 -->*/}
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {offerTitles.map((it, i) => <Offer key={it + i} offer={it} />)}
+                {namesPlaces.map((it, i) => <Offer key={it + i} offer={it} />)}
               </div>
             </section>
             <div className="cities__right-section">
@@ -109,8 +109,8 @@ const MainPage = ({quant, offerTitles}) => (
 );
 
 MainPage.propTypes = {
-  quant: PropTypes.number.isRequired,
-  offerTitles: PropTypes.array.isRequired,
+  quantPlaces: PropTypes.number.isRequired,
+  namesPlaces: PropTypes.array.isRequired,
 };
 
 export default MainPage;
