@@ -1,9 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const MainPage = (props) => {
-  // eslint-disable-next-line react/prop-types
-  const {quantPlaces} = props;
-  return (
+const MainPage = ({quant, places}) => (
+  <React.Fragment>
     <div className="page page--gray page--main">
       <header className="header">
         <div className="container">
@@ -70,7 +69,7 @@ const MainPage = (props) => {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{quantPlaces} places to stay in Amsterdam</b>
+              <b className="places__found">{quant} places to stay in Amsterdam</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex="0">
@@ -124,7 +123,7 @@ const MainPage = (props) => {
                       </div>
                     </div>
                     <h2 className="place-card__name">
-                      <a href="#">Beautiful &amp; luxurious apartment at great location</a>
+                      <a href="#">{places}</a>
                     </h2>
                     <p className="place-card__type">Apartment</p>
                   </div>
@@ -269,7 +268,12 @@ const MainPage = (props) => {
         </div>
       </main>
     </div>
-  );
+  </React.Fragment>
+);
+
+MainPage.propTypes = {
+  quant: PropTypes.number.isRequired,
+  places: PropTypes.string.isRequired,
 };
 
 export default MainPage;
