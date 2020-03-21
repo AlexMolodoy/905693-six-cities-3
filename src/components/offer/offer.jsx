@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Offer = ({offer}) => (
+const Offer = ({title}) => (
   <React.Fragment>
     <article className="cities__place-card place-card">
       <div className="place-card__mark">
@@ -32,7 +32,7 @@ const Offer = ({offer}) => (
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{offer}</a>
+          <a href="#">{title}</a>
         </h2>
         <p className="place-card__type">Apartment</p>
       </div>
@@ -41,11 +41,7 @@ const Offer = ({offer}) => (
 );
 
 Offer.propTypes = {
-  offer: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string.isRequired,
-      })
-  ).isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default Offer;

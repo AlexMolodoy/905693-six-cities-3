@@ -1,15 +1,19 @@
 import React from "react";
 import MainPage from '../main/main.jsx';
+import PropTypes from 'prop-types';
 
-const App = (props) => {
-  // eslint-disable-next-line react/prop-types
-  const {quantPlaces} = props;
-  // eslint-disable-next-line react/prop-types
-  const {namesPlaces} = props;
+const App = (quantPlaces, namesPlaces) => {
 
   return (
-    <MainPage quantPlaces={quantPlaces} namesPlaces={namesPlaces}/>
+    <MainPage
+      quantPlaces={quantPlaces}
+      namesPlaces={namesPlaces}/>
   );
+};
+
+App.propTypes = {
+  quantPlaces: PropTypes.number.isRequired,
+  namesPlaces: PropTypes.array.isRequired
 };
 
 export default App;

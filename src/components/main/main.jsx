@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Offer} from '../offer/offer';
+import Offer from '../offer/offer.jsx';
 
-const MainPage = ({quant, offer}) => (
+const MainPage = ({quant, offerTitles}) => (
   <React.Fragment>
     <div className="page page--gray page--main">
       <header className="header">
@@ -95,7 +95,7 @@ const MainPage = ({quant, offer}) => (
                 -->*/}
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {offer.map((it, i) => <Offer key={it + i} title={it} />)}
+                {offerTitles.map((it, i) => <Offer key={it + i} offer={it} />)}
               </div>
             </section>
             <div className="cities__right-section">
@@ -110,6 +110,7 @@ const MainPage = ({quant, offer}) => (
 
 MainPage.propTypes = {
   quant: PropTypes.number.isRequired,
+  offerTitles: PropTypes.array.isRequired,
 };
 
 export default MainPage;

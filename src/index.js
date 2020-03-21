@@ -14,6 +14,8 @@ const Settings = {
 };
 
 ReactDOM.render(
-    <App quantPlaces = {Settings.QUANTUM_PLACES} namesPlaces = {Settings.TITLES}/>,
+    <App
+      quantPlaces = {Settings.QUANTUM_PLACES}
+      namesPlaces = {Settings.TITLES}/>,
     document.querySelector(`#root`)
 );
