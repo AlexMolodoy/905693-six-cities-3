@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Offer from '../offer/offer.jsx';
 
-const MainPage = ({quantPlaces, namesPlaces}) => (
+const MainPage = ({quantPlaces, namesPlaces, onNamePlaceClick}) => (
   <React.Fragment>
     <div className="page page--gray page--main">
       <header className="header">
@@ -95,7 +95,7 @@ const MainPage = ({quantPlaces, namesPlaces}) => (
                 -->*/}
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {namesPlaces.map((it, i) => <Offer key={it + i} title={it} />)}
+                {namesPlaces.map((it, i) => <Offer key={it + i} onNamePlaceClick={onNamePlaceClick} title={it} />)}
               </div>
             </section>
             <div className="cities__right-section">
@@ -111,6 +111,7 @@ const MainPage = ({quantPlaces, namesPlaces}) => (
 MainPage.propTypes = {
   quantPlaces: PropTypes.number.isRequired,
   namesPlaces: PropTypes.array.isRequired,
+  onNamePlaceClick: PropTypes.func.isRequired,
 };
 
 export default MainPage;
