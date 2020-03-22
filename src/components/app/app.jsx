@@ -2,7 +2,7 @@ import React from "react";
 import MainPage from '../main/main.jsx';
 import PropTypes from 'prop-types';
 
-const App = (quantPlaces, namesPlaces) => {
+const App = ({quantPlaces, namesPlaces}) => {
 
   return (
     <MainPage
