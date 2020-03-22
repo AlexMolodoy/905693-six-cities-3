@@ -95,7 +95,7 @@ const MainPage = ({quantPlaces, namesPlaces}) => (
                 -->*/}
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {namesPlaces.map((it, i) => <Offer key={it + i} offer={it} />)}
+                {namesPlaces.map((it, i) => <Offer key={it + i} title={it} />)}
               </div>
             </section>
             <div className="cities__right-section">

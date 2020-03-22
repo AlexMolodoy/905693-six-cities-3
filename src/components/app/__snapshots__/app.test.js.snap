@@ -314,7 +314,9 @@ exports[`Render App 1`] = `
                 >
                   <a
                     href="#"
-                  />
+                  >
+                    Beautiful & luxurious apartment at great location
+                  </a>
                 </h2>
                 <p
                   className="place-card__type"
@@ -413,7 +415,9 @@ exports[`Render App 1`] = `
                 >
                   <a
                     href="#"
-                  />
+                  >
+                    Wood and stone place
+                  </a>
                 </h2>
                 <p
                   className="place-card__type"
@@ -512,7 +516,9 @@ exports[`Render App 1`] = `
                 >
                   <a
                     href="#"
-                  />
+                  >
+                    Canal View Prinsengracht
+                  </a>
                 </h2>
                 <p
                   className="place-card__type"
@@ -611,7 +617,9 @@ exports[`Render App 1`] = `
                 >
                   <a
                     href="#"
-                  />
+                  >
+                    Nice, cozy, warm big bed apartment
+                  </a>
                 </h2>
                 <p
                   className="place-card__type"
@@ -710,7 +718,9 @@ exports[`Render App 1`] = `
                 >
                   <a
                     href="#"
-                  />
+                  >
+                    Wood and stone place
+                  </a>
                 </h2>
                 <p
                   className="place-card__type"
