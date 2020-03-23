@@ -2,22 +2,29 @@ import React from "react";
 import MainPage from '../main/main.jsx';
 import PropTypes from 'prop-types';
 
-const App = ({quantPlaces, namesPlaces}) => {
+const App = ({quantPlaces, offers}) => {
 
   const onNamePlaceClick = () => {};
 
   return (
     <MainPage
       quantPlaces={quantPlaces}
-      namesPlaces={namesPlaces}
+      offers={offers}
       onNamePlaceClick={onNamePlaceClick}/>
   );
 };
 
 App.propTypes = {
   quantPlaces: PropTypes.number.isRequired,
-  namesPlaces: PropTypes.array.isRequired,
-  onNamePlaceClick: PropTypes.func.isRequired,
+  offers: PropTypes.arrayOf(PropTypes.shape({
+    image: PropTypes.string.isRequired,
+    isPremium: PropTypes.bool.isRequired,
+    price: PropTypes.number.isRequired,
+    rating: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    type: PropTypes.oneOf([`Apartment`, `Bungalow`, `House`, `Room`, `Studio`, `Villa`]).isRequired,
+  })).isRequired,
+  onNamePlaceClick: PropTypes.func,
 };
 
 export default App;
