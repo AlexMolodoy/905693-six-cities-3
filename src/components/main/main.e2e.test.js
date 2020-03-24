@@ -2,6 +2,7 @@ import React from 'react';
 import Enzyme, {mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import Main from './main';
+import {offers} from '../../mocks/tests.js';
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -13,7 +14,7 @@ it(`Should click on name place card`, () => {
   const main = mount(
       <Main
         quantPlaces={5}
-        namesPlaces={[`Beautiful & luxurious apartment at great location`, `Wood and stone place`, `Canal View Prinsengracht`, `Nice, cozy, warm big bed apartment`, `Wood and stone place`]}
+        offers={offers}
         onNamePlaceClick={onNamePlaceClick}
       />
   );
