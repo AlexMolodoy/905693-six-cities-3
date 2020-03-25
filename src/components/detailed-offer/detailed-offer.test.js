@@ -1,14 +1,12 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import OffersList from './offers-list.jsx';
+import DetailedOffer from './detailed-offer.jsx';
 import {offers} from '../../mocks/tests.js';
 
-it(`Should render Offers list correctly`, () => {
+it(`Should render DetailedOffer correctly`, () => {
   const tree = renderer
-    .create(<OffersList
-      offers={offers}
-      onPlaceCardNameClick={() => {}}
-      quantPlaces={5}
+    .create(<DetailedOffer
+      offer={offers[0]}
     />)
     .toJSON();
 

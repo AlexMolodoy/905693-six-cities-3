@@ -6,8 +6,8 @@ import {offers} from '../../mocks/tests.js';
 it(`Render App`, () => {
   const tree = renderer
     .create(<App
-      quantPlaces={5}
       offers={offers}
+      quantPlaces={5}
     />)
     .toJSON();
 

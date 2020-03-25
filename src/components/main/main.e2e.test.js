@@ -8,14 +8,14 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
-it(`Should click on name place card`, () => {
+it(`Should place card name be pressed`, () => {
   const onNamePlaceClick = jest.fn();
 
   const main = mount(
       <Main
-        quantPlaces={5}
         offers={offers}
         onNamePlaceClick={onNamePlaceClick}
+        quantPlaces={5}
       />
   );
 

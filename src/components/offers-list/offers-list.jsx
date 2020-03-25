@@ -1,31 +1,43 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import Offer from '../offer/offer.jsx';
+import {offerShape} from '../../const.js';
 
 class OffersList extends PureComponent {
   constructor(props) {
     super(props);
-    this.hoverOff = this.hoverOff.bind(this);
-    this.hoverOn = this.hoverOn.bind(this);
+    this.handlePlaceCardHoverOff = this.handlePlaceCardHoverOff.bind(this);
+    this.handlePlaceCardHoverOn = this.handlePlaceCardHoverOn.bind(this);
     this.state = {
-      activeOffer: null
+      offerOnHover: null,
     };
   }
 
-  hoverOff() {
+  onNamePlaceClick(offer) {
+    const onTitleClick = () => {
+      return this.props.onNamePlaceClick(offer);
+
+    };
+    return onTitleClick;
+  }
+
+  handlePlaceCardHoverOff() {
     this.setState({
-      activeOffer: null
+      offerOnHover: null
     });
   }
 
-  hoverOn(currentOffer) {
-    this.setState({
-      activeOffer: currentOffer
-    });
+  handlePlaceCardHoverOn(offer) {
+    const handleMouseOver = () => {
+      this.setState({
+        offerOnHover: offer
+      });
+    };
+    return handleMouseOver;
   }
 
   render() {
-    const {offers, onNamePlaceClick, quantPlaces} = this.props;
+    const {offers, quantPlaces} = this.props;
 
     return (
       <section className="cities__places places">
@@ -47,13 +59,13 @@ class OffersList extends PureComponent {
           </ul>
         </form>
         <div className="cities__places-list places__list tabs__content">
-          {offers.map((it, i) => (
+          {offers.map((it) => (
             <Offer
-              key={it + i}
-              offer={offers[i]}
-              onMouseEnter={() => this.hoverOn(offers[i])}
-              onMouseLeave={this.hoverOff}
-              onNamePlaceClick={onNamePlaceClick}
+              key={it.id}
+              offer={it}
+              onMouseEnter={this.handlePlaceCardHoverOn(it)}
+              onMouseLeave={this.handlePlaceCardHoverOff}
+              onNamePlaceClick={this.onNamePlaceClick(it)}
             />
           ))}
         </div>
@@ -63,16 +75,9 @@ class OffersList extends PureComponent {
 }
 
 OffersList.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.shape({
-    image: PropTypes.string.isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    price: PropTypes.number.isRequired,
-    rating: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    type: PropTypes.oneOf([`Apartment`, `Bungalow`, `House`, `Room`, `Studio`, `Villa`]).isRequired,
-  })).isRequired,
+  offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
   onNamePlaceClick: PropTypes.func,
-  quantPlaces: PropTypes.number,
+  quantPlaces: PropTypes.number.isRequired,
 };
 
 export default OffersList;

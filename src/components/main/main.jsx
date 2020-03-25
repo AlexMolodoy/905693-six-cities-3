@@ -1,14 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import OffersList from '../offers-list/offers-list.jsx';
+import {offerShape} from '../../const.js';
 
-const MainPage = ({quantPlaces, offers, onNamePlaceClick}) => (
-  <React.Fragment>
+const Main = (offers, onNamePlaceClick, quantPlaces) => {
+
+  return (
     <div className="page page--gray page--main">
       <header className="header">
         <div className="container">
           <div className="header__wrapper">
-            <div classame="header__left">
+            <div className="header__left">
               <a className="header__logo-link header__logo-link--active">
                 <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
               </a>
@@ -80,20 +82,13 @@ const MainPage = ({quantPlaces, offers, onNamePlaceClick}) => (
         </div>
       </main>
     </div>
-  </React.Fragment>
-);
-
-MainPage.propTypes = {
-  quantPlaces: PropTypes.number.isRequired,
-  offers: PropTypes.arrayOf(PropTypes.shape({
-    image: PropTypes.string.isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    price: PropTypes.number.isRequired,
-    rating: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    type: PropTypes.oneOf([`Apartment`, `Bungalow`, `House`, `Room`, `Studio`, `Villa`]).isRequired,
-  })).isRequired,
-  onNamePlaceClick: PropTypes.func,
+  );
 };
 
-export default MainPage;
+Main.propTypes = {
+  offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
+  onNamePlaceClick: PropTypes.func,
+  quantPlaces: PropTypes.number.isRequired
+};
+
+export default Main;
