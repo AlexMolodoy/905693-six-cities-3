@@ -40,6 +40,7 @@ exports[`Should render Offer correctly 1`] = `
         >
           €
           98
+           
         </b>
         <span
           className="place-card__price-text"
@@ -76,15 +77,14 @@ exports[`Should render Offer correctly 1`] = `
         <span
           style={
             Object {
-              "width": "80%",
+              "width": "90%",
             }
           }
         />
         <span
           className="visually-hidden"
         >
-          $
-          0
+          Rating
         </span>
       </div>
     </div>
@@ -95,13 +95,13 @@ exports[`Should render Offer correctly 1`] = `
         href="#"
         onClick={[Function]}
       >
-        Cozy Studio
+        Amazing Studio Loft
       </a>
     </h2>
     <p
       className="place-card__type"
     >
-      Studio
+      Apartment
     </p>
   </div>
 </article>

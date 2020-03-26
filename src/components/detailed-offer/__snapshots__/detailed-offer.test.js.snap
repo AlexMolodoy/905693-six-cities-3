@@ -84,7 +84,7 @@ exports[`Should render DetailedOffer correctly 1`] = `
             <img
               alt="Photo studio"
               className="property__image"
-              src="img/room1.jpg"
+              src="img/room.jpg"
             />
           </div>
           <div
@@ -93,7 +93,34 @@ exports[`Should render DetailedOffer correctly 1`] = `
             <img
               alt="Photo studio"
               className="property__image"
-              src="img/room2.jpg"
+              src="img/room.jpg"
+            />
+          </div>
+          <div
+            className="property__image-wrapper"
+          >
+            <img
+              alt="Photo studio"
+              className="property__image"
+              src="img/room.jpg"
+            />
+          </div>
+          <div
+            className="property__image-wrapper"
+          >
+            <img
+              alt="Photo studio"
+              className="property__image"
+              src="img/room.jpg"
+            />
+          </div>
+          <div
+            className="property__image-wrapper"
+          >
+            <img
+              alt="Photo studio"
+              className="property__image"
+              src="img/room.jpg"
             />
           </div>
         </div>
@@ -105,19 +132,12 @@ exports[`Should render DetailedOffer correctly 1`] = `
           className="property__wrapper"
         >
           <div
-            className="property__mark"
-          >
-            <span>
-              Premium
-            </span>
-          </div>
-          <div
             className="property__name-wrapper"
           >
             <h1
               className="property__name"
             >
-              Cozy Studio
+              Amazing Studio Loft
             </h1>
             <button
               className="property__bookmark-button button"
@@ -148,7 +168,7 @@ exports[`Should render DetailedOffer correctly 1`] = `
               <span
                 style={
                   Object {
-                    "width": "0%",
+                    "width": "90%",
                   }
                 }
               />
@@ -161,7 +181,7 @@ exports[`Should render DetailedOffer correctly 1`] = `
             <span
               className="property__rating-value rating__value"
             >
-              0.0
+              4.5
             </span>
           </div>
           <ul
@@ -170,17 +190,17 @@ exports[`Should render DetailedOffer correctly 1`] = `
             <li
               className="property__feature property__feature--entire"
             >
-              Studio
+              Apartment
             </li>
             <li
               className="property__feature property__feature--bedrooms"
             >
-              2 Bedrooms
+              1 Bedroom
             </li>
             <li
               className="property__feature property__feature--adults"
             >
-              Max 5 adults
+              Max 2 adults
             </li>
           </ul>
           <div
@@ -219,6 +239,26 @@ exports[`Should render DetailedOffer correctly 1`] = `
               >
                 Heating
               </li>
+              <li
+                className="property__inside-item"
+              >
+                Cable TV
+              </li>
+              <li
+                className="property__inside-item"
+              >
+                Fridge
+              </li>
+              <li
+                className="property__inside-item"
+              >
+                Coffee machine
+              </li>
+              <li
+                className="property__inside-item"
+              >
+                Towels
+              </li>
             </ul>
           </div>
           <div
@@ -239,14 +279,14 @@ exports[`Should render DetailedOffer correctly 1`] = `
                   alt="Host avatar"
                   className="property__avatar user__avatar"
                   height="74"
-                  src=""
+                  src="img/avatar-angelina.jpg"
                   width="74"
                 />
               </div>
               <span
                 className="property__user-name"
               >
-                Ann
+                Angelina
               </span>
             </div>
             <div
@@ -255,7 +295,7 @@ exports[`Should render DetailedOffer correctly 1`] = `
               <p
                 className="property__text"
               >
-                
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing enim eu turpis egestas pretium aenean pharetra magna. Quis eleifend quam adipiscing vitae proin sagittis nisl rhoncus.
               </p>
             </div>
           </div>

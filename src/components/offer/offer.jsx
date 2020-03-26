@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {offerShape} from '../../const.js';
 
-const Offer = (offer, onMouseEnter, onMouseLeave, onNamePlaceClick) => {
+const Offer = ({offer, onMouseEnter, onMouseLeave, onNamePlaceClick}) => {
   return (
     <article className="cities__place-card place-card"
       onMouseEnter={onMouseEnter}
