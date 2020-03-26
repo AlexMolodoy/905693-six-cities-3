@@ -4,7 +4,7 @@ import DetailedOffer from './detailed-offer.jsx';
 // import {offers} from '../../mocks/tests.js';
 
 it(`Should render DetailedOffer correctly`, () => {
-  const offer = {
+  const testOffer = {
     bedrooms: 1,
     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing enim eu turpis egestas pretium aenean pharetra magna. Quis eleifend quam adipiscing vitae proin sagittis nisl rhoncus.`,
     features: [`Wifi`, `Heating`, `Cable TV`, `Fridge`, `Coffee machine`, `Towels`],
@@ -25,7 +25,7 @@ it(`Should render DetailedOffer correctly`, () => {
 
   const tree = renderer
       .create(<DetailedOffer
-        offer={offer}
+        offer={testOffer}
         onMouseEnter={() => {}}
         onMouseLeave={() => {}}
         onNamePlaceClick={() => {}}

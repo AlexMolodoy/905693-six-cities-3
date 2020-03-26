@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import OffersList from '../offers-list/offers-list.jsx';
 import {offerShape} from '../../const.js';
 
-const Main = (offers, onNamePlaceClick, quantPlaces) => {
+const Main = ({offers, onNamePlaceClick, quantPlaces}) => {
 
   return (
     <div className="page page--gray page--main">

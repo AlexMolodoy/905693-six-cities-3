@@ -4,7 +4,7 @@ import App from './components/app/app.jsx';
 import offers from './mocks/offers.js';
 
 const Settings = {
-  QUANTUM_PLACES: 5,
+  QUANTUM_PLACES: 4,
 };
 
 ReactDOM.render(
