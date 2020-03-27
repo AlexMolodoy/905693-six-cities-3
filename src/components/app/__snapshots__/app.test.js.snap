@@ -14,7 +14,7 @@ exports[`Render App 1`] = `
         className="header__wrapper"
       >
         <div
-          classame="header__left"
+          className="header__left"
         >
           <a
             className="header__logo-link header__logo-link--active"
@@ -263,6 +263,7 @@ exports[`Render App 1`] = `
                     >
                       €
                       98
+                       
                     </b>
                     <span
                       className="place-card__price-text"
@@ -299,15 +300,14 @@ exports[`Render App 1`] = `
                     <span
                       style={
                         Object {
-                          "width": "80%",
+                          "width": "90%",
                         }
                       }
                     />
                     <span
                       className="visually-hidden"
                     >
-                      $
-                      0
+                      Rating
                     </span>
                   </div>
                 </div>
@@ -318,13 +318,13 @@ exports[`Render App 1`] = `
                     href="#"
                     onClick={[Function]}
                   >
-                    Cozy Studio
+                    Amazing Studio Loft
                   </a>
                 </h2>
                 <p
                   className="place-card__type"
                 >
-                  Studio
+                  Apartment
                 </p>
               </div>
             </article>
@@ -367,6 +367,7 @@ exports[`Render App 1`] = `
                     >
                       €
                       34
+                       
                     </b>
                     <span
                       className="place-card__price-text"
@@ -410,8 +411,7 @@ exports[`Render App 1`] = `
                     <span
                       className="visually-hidden"
                     >
-                      $
-                      50
+                      Rating
                     </span>
                   </div>
                 </div>
@@ -422,13 +422,13 @@ exports[`Render App 1`] = `
                     href="#"
                     onClick={[Function]}
                   >
-                    Big Vintage Apartment
+                    Big Vintage Room
                   </a>
                 </h2>
                 <p
                   className="place-card__type"
                 >
-                  Apartment
+                  Room
                 </p>
               </div>
             </article>
@@ -470,7 +470,8 @@ exports[`Render App 1`] = `
                       className="place-card__price-value"
                     >
                       €
-                      80
+                      70
+                       
                     </b>
                     <span
                       className="place-card__price-text"
@@ -507,15 +508,14 @@ exports[`Render App 1`] = `
                     <span
                       style={
                         Object {
-                          "width": "80%",
+                          "width": "85%",
                         }
                       }
                     />
                     <span
                       className="visually-hidden"
                     >
-                      $
-                      100
+                      Rating
                     </span>
                   </div>
                 </div>
@@ -526,7 +526,7 @@ exports[`Render App 1`] = `
                     href="#"
                     onClick={[Function]}
                   >
-                    Small Country House
+                    Small House in the city center
                   </a>
                 </h2>
                 <p
@@ -574,7 +574,8 @@ exports[`Render App 1`] = `
                       className="place-card__price-value"
                     >
                       €
-                      3200
+                      320
+                       
                     </b>
                     <span
                       className="place-card__price-text"
@@ -611,15 +612,14 @@ exports[`Render App 1`] = `
                     <span
                       style={
                         Object {
-                          "width": "80%",
+                          "width": "95%",
                         }
                       }
                     />
                     <span
                       className="visually-hidden"
                     >
-                      $
-                      95
+                      Rating
                     </span>
                   </div>
                 </div>
@@ -630,117 +630,13 @@ exports[`Render App 1`] = `
                     href="#"
                     onClick={[Function]}
                   >
-                    Villa with no view
+                    Villa with amazing view
                   </a>
                 </h2>
                 <p
                   className="place-card__type"
                 >
                   Villa
-                </p>
-              </div>
-            </article>
-            <article
-              className="cities__place-card place-card"
-              onMouseEnter={[Function]}
-              onMouseLeave={[Function]}
-            >
-              <div
-                className="place-card__mark"
-              >
-                <span />
-              </div>
-              <div
-                className="cities__image-wrapper place-card__image-wrapper"
-              >
-                <a
-                  href="#"
-                >
-                  <img
-                    alt="Place image"
-                    className="place-card__image"
-                    height="200"
-                    src="img/apartment-03.jpg"
-                    width="260"
-                  />
-                </a>
-              </div>
-              <div
-                className="place-card__info"
-              >
-                <div
-                  className="place-card__price-wrapper"
-                >
-                  <div
-                    className="place-card__price"
-                  >
-                    <b
-                      className="place-card__price-value"
-                    >
-                      €
-                      5
-                    </b>
-                    <span
-                      className="place-card__price-text"
-                    >
-                      / night
-                    </span>
-                  </div>
-                  <button
-                    className="place-card__bookmark-button button"
-                    type="button"
-                  >
-                    <svg
-                      className="place-card__bookmark-icon"
-                      height="19"
-                      width="18"
-                    >
-                      <use
-                        xlinkHref="#icon-bookmark"
-                      />
-                    </svg>
-                    <span
-                      className="visually-hidden"
-                    >
-                      To bookmarks
-                    </span>
-                  </button>
-                </div>
-                <div
-                  className="place-card__rating rating"
-                >
-                  <div
-                    className="place-card__stars rating__stars"
-                  >
-                    <span
-                      style={
-                        Object {
-                          "width": "80%",
-                        }
-                      }
-                    />
-                    <span
-                      className="visually-hidden"
-                    >
-                      $
-                      15
-                    </span>
-                  </div>
-                </div>
-                <h2
-                  className="place-card__name"
-                >
-                  <a
-                    href="#"
-                    onClick={[Function]}
-                  >
-                    Tiny bungalow
-                  </a>
-                </h2>
-                <p
-                  className="place-card__type"
-                >
-                  Bungalow
                 </p>
               </div>
             </article>
