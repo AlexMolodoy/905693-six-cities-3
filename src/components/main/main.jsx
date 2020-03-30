@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import OffersList from '../offers-list/offers-list.jsx';
 import {offerShape} from '../../const.js';
+import Map from '../map/map.jsx';
 
 const Main = ({offers, onNamePlaceClick, quantPlaces}) => {
 
@@ -76,7 +77,11 @@ const Main = ({offers, onNamePlaceClick, quantPlaces}) => {
               quantPlaces={quantPlaces}
             />
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <section className="cities__map map">
+                <Map
+                  offers={offers}
+                />
+              </section>
             </div>
           </div>
         </div>

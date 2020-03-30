@@ -6,6 +6,7 @@ import DetailedOffer from './detailed-offer.jsx';
 it(`Should render DetailedOffer correctly`, () => {
   const testOffer = {
     bedrooms: 1,
+    coords: [52.3909553943508, 4.85309666406198],
     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing enim eu turpis egestas pretium aenean pharetra magna. Quis eleifend quam adipiscing vitae proin sagittis nisl rhoncus.`,
     features: [`Wifi`, `Heating`, `Cable TV`, `Fridge`, `Coffee machine`, `Towels`],
     guests: 2,
