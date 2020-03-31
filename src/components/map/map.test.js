@@ -1,22 +1,18 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Map from './map.jsx';
-import {offers} from '../../mocks/tests.js';
-import {Provider} from 'react-redux';
-import configureStore from "redux-mock-store";
-
-const mockStore = configureStore([]);
+import {testOffers} from '../../mocks/tests.js';
 
 it(`Should render Map correctly`, () => {
-  const store = mockStore({
-    offers: offers[0].offers,
-    city: offers[0].city
-  });
+
   const tree = renderer
   .create(
-      <Provider store={store}>
-        <Map />
-      </Provider>
+      <Map
+        city={testOffers[0].city}
+        isBlockedZoom={false}
+        mapWidth={`100%`}
+        offers={testOffers[0].offers}
+      />
   )
     .toJSON();
 
