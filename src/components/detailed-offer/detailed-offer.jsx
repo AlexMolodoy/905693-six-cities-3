@@ -293,7 +293,7 @@ const DetailedOffer = ({offer}) => {
 };
 
 DetailedOffer.propTypes = {
-  offer: PropTypes.shape(offerShape).isRequired,
+  offer: PropTypes.shape(offerShape),
 };
 
 export default DetailedOffer;
