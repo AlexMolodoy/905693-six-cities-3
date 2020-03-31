@@ -3,34 +3,21 @@ import PropTypes from 'prop-types';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Main from '../main/main.jsx';
 import DetailedOffer from '../detailed-offer/detailed-offer.jsx';
+import {connect} from 'react-redux';
 import {offerShape} from '../../const.js';
 
 class App extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.handlePlaceCardName = this.handlePlaceCardName.bind(this);
-
-    this.state = {
-      currentOffer: null,
-    };
-  }
-
-  handlePlaceCardName(value) {
-    this.setState({
-      currentOffer: value
-    });
-  }
 
   _renderApp() {
-    const {offers, quantPlaces} = this.props;
-    const {currentOffer} = this.state;
+    const {
+      offers,
+      currentOffer,
+    } = this.props;
 
     if (currentOffer === null) {
       return (
         <Main
           offers={offers}
-          onPlaceCardNameClick={this.handlePlaceCardName}
-          quantPlaces={quantPlaces}
         />
       );
     } else {
@@ -43,7 +30,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const {offers} = this.props;
+    const {currentOffer} = this.props;
 
     return (
       <BrowserRouter>
@@ -53,7 +40,7 @@ class App extends PureComponent {
           </Route>
           <Route exact path="/dev-offer">
             <DetailedOffer
-              offer={offers[0]}
+              offer={currentOffer}
             />
           </Route>
         </Switch>
@@ -64,7 +51,13 @@ class App extends PureComponent {
 
 App.propTypes = {
   offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
-  quantPlaces: PropTypes.number.isRequired
+  currentOffer: PropTypes.shape(offerShape),
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  offers: state.offers,
+  currentOffer: state.currentOffer,
+});
+
+export {App};
+export default connect(mapStateToProps)(App);
