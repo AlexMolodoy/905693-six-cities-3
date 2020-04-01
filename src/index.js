@@ -3,8 +3,6 @@ import ReactDOM from "react-dom";
 import App from './components/app/app.jsx';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
-// import offers from './mocks/offers.js';
-
 import {reducer} from './reducer.js';
 
 const store = createStore(
@@ -14,9 +12,7 @@ const store = createStore(
 
 ReactDOM.render(
     <Provider store={store}>
-      <App
-      // offers={offers}
-      />
+      <App />
     </Provider>,
     document.querySelector(`#root`)
 );

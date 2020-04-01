@@ -5,17 +5,11 @@ import {offersListShape, cityShape} from '../../const.js';
 import {ActionCreator} from '../../reducer.js';
 
 class Cities extends PureComponent {
-
   render() {
     const {allOffers, city, handleCityClick} = this.props;
     const offersToShow = allOffers.slice(0, 6);
 
-    const onCityNameClick = (newCity) => {
-      const onCityClick = () => {
-        return handleCityClick(newCity);
-      };
-      return onCityClick;
-    };
+    const onCityNameClick = (newCity) => () => handleCityClick(newCity);
 
     return (
       <ul className="locations__list tabs__list">
@@ -34,7 +28,6 @@ class Cities extends PureComponent {
     );
   }
 }
-
 Cities.propTypes = {
   allOffers: PropTypes.arrayOf(PropTypes.shape(offersListShape)).isRequired,
   city: PropTypes.shape(cityShape).isRequired,

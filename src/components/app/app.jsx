@@ -7,7 +7,6 @@ import {connect} from 'react-redux';
 import {offerShape} from '../../const.js';
 
 class App extends PureComponent {
-
   _renderApp() {
     const {
       offers,

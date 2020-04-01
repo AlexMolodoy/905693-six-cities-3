@@ -4,9 +4,9 @@ import OffersList from '../offers-list/offers-list.jsx';
 import Map from '../map/map.jsx';
 import Cities from '../cities/cities.jsx';
 import {connect} from 'react-redux';
-import {offerShape} from '../../const.js';
+import {offerShape, cityShape} from '../../const.js';
 
-const Main = ({offers}) => {
+const Main = ({city, offers}) => {
 
 
   return (
@@ -43,11 +43,20 @@ const Main = ({offers}) => {
         </div>
         <div className="cities">
           <div className={`cities__places-container container ${!offers.length ? `cities__places-container--empty` : ``}`}>
-            <OffersList />
+            <OffersList
+              city={city}
+              isCitiesClass={true}
+              offers={offers}
+            />
             <div className="cities__right-section">
               {offers.length ?
                 <section className="cities__map map">
-                  <Map />
+                  <Map
+                    isBlockedZoom={false}
+                    city={city}
+                    mapWidth={`100%`}
+                    offers={offers}
+                  />
                 </section>
                 : ``
               }
@@ -61,9 +70,11 @@ const Main = ({offers}) => {
 
 Main.propTypes = {
   offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
+  city: PropTypes.shape(cityShape).isRequired,
 };
 
 const mapStateToProps = (state) => ({
+  city: state.city,
   offers: state.offers,
 });
 
