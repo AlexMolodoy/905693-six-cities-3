@@ -175,6 +175,7 @@ const DetailedOffer = ({city, offer}) => {
               currentOffer={offer}
               mapWidth={MAP_SIZE_DETAILED_OFFER}
               isBlockedZoom={true}
+              offers={offersNearbyToShow}
             />
           </section>
         </section>
