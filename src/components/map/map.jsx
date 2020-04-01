@@ -8,7 +8,7 @@ class Map extends PureComponent {
     const {city, currentOffer, isBlockedZoom, offers} = this.props;
     const cityCenter = city.coords;
 
-    if (offers) {
+    if (offers.length) {
       const placesCoords = offers.map((offer) => offer.coords);
 
       const showAllMarkers = () => {

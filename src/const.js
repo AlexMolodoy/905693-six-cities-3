@@ -10,6 +10,7 @@ const MAX_OFFERS_NEARBY = 3;
 
 const MAX_COMMENTS_VALUE = 10;
 
+
 const PlaceType = {
   APARTMENT: `Apartment`,
   BUNGALOW: `Bungalow`,
