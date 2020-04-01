@@ -6,7 +6,7 @@ import Cities from '../cities/cities.jsx';
 import {connect} from 'react-redux';
 import {offerShape, cityShape} from '../../const.js';
 
-const Main = ({city, offers}) => {
+const Main = ({city, offers, offerOnHover}) => {
 
 
   return (
@@ -52,6 +52,7 @@ const Main = ({city, offers}) => {
               {offers.length ?
                 <section className="cities__map map">
                   <Map
+                    currentOffer={offerOnHover}
                     isBlockedZoom={false}
                     city={city}
                     mapWidth={`100%`}
@@ -71,11 +72,13 @@ const Main = ({city, offers}) => {
 Main.propTypes = {
   offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
   city: PropTypes.shape(cityShape).isRequired,
+  offerOnHover: PropTypes.shape(offerShape),
 };
 
 const mapStateToProps = (state) => ({
   city: state.city,
   offers: state.offers,
+  offerOnHover: state.offerOnHover,
 });
 
 export {Main};

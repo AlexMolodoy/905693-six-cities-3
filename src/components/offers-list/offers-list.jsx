@@ -3,10 +3,15 @@ import PropTypes from 'prop-types';
 import Offer from '../offer/offer.jsx';
 import {offerShape, cityShape} from '../../const.js';
 import Sorting from '../sorting/sorting.jsx';
+import {connect} from 'react-redux';
+import {sortOffers} from '../../utils.js';
 
 
-const OffersList = ({city, isCitiesClass, offers}) => {
-  return !offers.length ?
+const OffersList = ({city, isCitiesClass, offers, sortType}) => {
+  const sortedOffers = offers.slice();
+  sortOffers(sortType, sortedOffers, offers);
+
+  return !sortedOffers.length ?
     (
       <section className="cities__no-places">
         <div className="cities__status-wrapper tabs__content">
@@ -20,14 +25,14 @@ const OffersList = ({city, isCitiesClass, offers}) => {
         {isCitiesClass ?
           <React.Fragment>
             <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">{offers.length} places to stay in {city.name}</b>
+            <b className="places__found">{sortedOffers.length} places to stay in {city.name}</b>
             <Sorting />
           </React.Fragment>
           :
           <h2 className="near-places__title">Other places in the neighbourhood</h2>
         }
         <div className={`places__list ${isCitiesClass ? `cities__places-list tabs__content` : `near-places__list`}`}>
-          {offers.map((it) => (
+          {sortedOffers.map((it) => (
             <Offer
               isCitiesClass={isCitiesClass}
               key={it.id}
@@ -43,6 +48,13 @@ OffersList.propTypes = {
   isCitiesClass: PropTypes.bool,
   offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
   city: PropTypes.shape(cityShape).isRequired,
+  sortType: PropTypes.string.isRequired,
 };
 
-export default OffersList;
+
+const mapStateToProps = (state) => ({
+  sortType: state.sortType,
+});
+
+export {OffersList};
+export default connect(mapStateToProps)(OffersList);
