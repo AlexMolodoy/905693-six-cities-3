@@ -11,12 +11,13 @@ const MAX_OFFERS_NEARBY = 3;
 const MAX_COMMENTS_VALUE = 10;
 
 const SortingType = {
-  DEFAULT: `default`,
-  PRICE_LOW_TO_HIGH: `low-to-high`,
-  PRICE_HIGH_TO_LOW: `high-to-low`,
-  TOP_RATED: `top-rated`
+  DEFAULT: `Popular`,
+  PRICE_LOW_TO_HIGH: `Price: low to high`,
+  PRICE_HIGH_TO_LOW: `Price: high to low`,
+  TOP_RATED: `Top rated first`
 };
 
+const sortTypes = [SortingType.DEFAULT, SortingType.PRICE_LOW_TO_HIGH, SortingType.PRICE_HIGH_TO_LOW, SortingType.TOP_RATED];
 
 const PlaceType = {
   APARTMENT: `Apartment`,
@@ -84,4 +85,4 @@ const commentShape = {
   user: PropTypes.shape(userShape).isRequired
 };
 
-export {offerShape, offersListShape, cityShape, commentShape, MAP_ICON_SIZE, ZOOM_VALUE, MAP_SIZE_DETAILED_OFFER, MAX_OFFERS_NEARBY, MAX_COMMENTS_VALUE, SortingType};
+export {offerShape, offersListShape, cityShape, commentShape, MAP_ICON_SIZE, ZOOM_VALUE, MAP_SIZE_DETAILED_OFFER, MAX_OFFERS_NEARBY, MAX_COMMENTS_VALUE, SortingType, sortTypes};
