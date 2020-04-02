@@ -4,6 +4,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import Sorting from './sorting.jsx';
 import {Provider} from 'react-redux';
 import configureStore from "redux-mock-store";
+import {SortingType} from '../../const.js';
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -20,7 +21,8 @@ describe(`Events`, () => {
     const placeCard = mount(
         <Provider store={store}>
           <Sorting
-            handleSortTypeClick={store.dispatch}
+            sortType={SortingType.DEFAULT}
+            handleSortTypeClick={() => {}}
           />
         </Provider>
     );
