@@ -44,6 +44,7 @@ export default class Sorting extends PureComponent {
 }
 
 Sorting.propTypes = {
-  handleSortTypeClick: PropTypes.func.isRequired,
-  sortType: PropTypes.string.isRequired,
+  handleSortTypeClick: PropTypes.func,
+  sortType: PropTypes.string,
 };
+

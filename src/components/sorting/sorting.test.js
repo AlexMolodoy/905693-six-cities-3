@@ -13,7 +13,7 @@ it(`Should render Reviews list correctly`, () => {
   const tree = renderer
   .create(
       <Provider store={store}>
-        <Sorting />
+        <Sorting/>
       </Provider>
   )
     .toJSON();
