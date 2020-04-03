@@ -6,9 +6,11 @@ import Sorting from '../sorting/sorting.jsx';
 import {connect} from 'react-redux';
 import {sortOffers} from '../../utils.js';
 import {ActionCreator} from '../../reducer.js';
+import withShowControl from '../../hocs/with-show-control/with-show-control.js';
 
 const OffersList = ({city, handlePlaceCardHover, handlePlaceCardNameClick, handleSortTypeClick, isCitiesClass, offers, sortType}) => {
   const sortedOffers = [...offers];
+  const SortingWrapped = withShowControl(Sorting);
 
   const handleCardNameClick = (newOffer) => () => handlePlaceCardNameClick(newOffer);
   const handleCardHover = (newOffer) => () => handlePlaceCardHover(newOffer);
@@ -30,7 +32,7 @@ const OffersList = ({city, handlePlaceCardHover, handlePlaceCardNameClick, handl
           <React.Fragment>
             <h2 className="visually-hidden">Places</h2>
             <b className="places__found">{sortedOffers.length} places to stay in {city.name}</b>
-            <Sorting
+            <SortingWrapped
               sortType={sortType}
               handleSortTypeClick={handleSortTypeClick}
             />
