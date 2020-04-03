@@ -32,39 +32,6 @@ const mock = {
 };
 
 describe(`Events`, () => {
-  it(`Get function on card hover`, () => {
-    const store = mockStore();
-    store.dispatch = jest.fn();
-
-    const placeCard = mount(
-        <Provider store={store}>
-          <Offer
-            handlePlaceCardHover={store.dispatch}
-            offer={mock}
-          />
-        </Provider>
-    );
-
-    placeCard.find(`.place-card`).simulate(`mouseEnter`);
-    expect(store.dispatch).toHaveBeenCalledTimes(1);
-  });
-
-  it(`Get function on card blur`, () => {
-    const store = mockStore();
-    store.dispatch = jest.fn();
-
-    const placeCard = mount(
-        <Provider store={store}>
-          <Offer
-            handlePlaceCardHover={store.dispatch}
-            offer={mock}
-          />
-        </Provider>
-    );
-
-    placeCard.find(`.place-card`).simulate(`mouseLeave`);
-    expect(store.dispatch).toHaveBeenCalledTimes(1);
-  });
 
   it(`Get function on title click`, () => {
     const store = mockStore();
