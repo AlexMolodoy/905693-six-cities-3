@@ -22,12 +22,12 @@ describe(`Events`, () => {
         <Provider store={store}>
           <Sorting
             sortType={SortingType.DEFAULT}
-            handleSortTypeClick={() => {}}
+            handleSortTypeClick={store.dispatch}
           />
         </Provider>
     );
 
-    placeCard.find(`.places__sorting-type`).simulate(`click`);
+    placeCard.find(`.places__option`).first().simulate(`click`);
     expect(store.dispatch).toHaveBeenCalledTimes(1);
   });
 });
