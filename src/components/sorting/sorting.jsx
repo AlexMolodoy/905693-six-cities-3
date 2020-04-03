@@ -47,4 +47,3 @@ Sorting.propTypes = {
   handleSortTypeClick: PropTypes.func,
   sortType: PropTypes.string,
 };
-
