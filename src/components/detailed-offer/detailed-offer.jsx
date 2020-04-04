@@ -1,20 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Map from '../map/map.jsx';
-import {offerShape, cityShape, MAP_SIZE_DETAILED_OFFER, MAX_OFFERS_NEARBY} from '../../const.js';
-import {getRating} from '../../utils.js';
 import ReviewsList from '../reviews-list/reviews-list.jsx';
-import commentsList from '../../mocks/comments.js';
 import OffersList from '../offers-list/offers-list.jsx';
-import placesNearby from '../../mocks/places-nearby.js';
 import {connect} from 'react-redux';
+import {offerShape, cityShape, MAP_SIZE_DETAILED_OFFER, MAX_OFFERS_NEARBY, commentShape} from '../../const.js';
+import {getRatingInPercent} from '../../utils.js';
+import {getCity} from '../../reducer/app/selectors.js';
+import {getCommentsList, getCurrentOffer, getOffersNearby} from '../../reducer/data/selectors.js';
 
-const DetailedOffer = ({city, offer}) => {
+const DetailedOffer = ({city, commentsList, offer, offersNearby}) => {
+  const ratingInPercent = getRatingInPercent(offer.rating);
+  const offersNearbyToShow = offersNearby.slice(0, MAX_OFFERS_NEARBY);
 
-  const fiveStarRating = getRating(offer.rating).toFixed(1);
-  const offersNearbyToShow = placesNearby.filter((it) => {
-    return (it.city.name === city.name);
-  })[0].offers.slice(0, MAX_OFFERS_NEARBY);
   return (
     <div className="page">
       <header className="header">
@@ -70,10 +68,10 @@ const DetailedOffer = ({city, offer}) => {
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
-                  <span style={{width: `${offer.rating}%`}}></span>
+                  <span style={{width: `${ratingInPercent}%`}}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
-                <span className="property__rating-value rating__value">{fiveStarRating}</span>
+                <span className="property__rating-value rating__value">{offer.rating}</span>
               </div>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
@@ -194,11 +192,15 @@ DetailedOffer.propTypes = {
   offer: PropTypes.shape(offerShape),
   city: PropTypes.shape(cityShape).isRequired,
   currentOffer: PropTypes.shape(offerShape),
+  commentsList: PropTypes.arrayOf(PropTypes.shape(commentShape)),
+  offersNearby: PropTypes.arrayOf(PropTypes.shape(offerShape)),
 };
 
 const mapStateToProps = (state) => ({
-  city: state.city,
-  currentOffer: state.currentOffer,
+  city: getCity(state),
+  commentsList: getCommentsList(state),
+  currentOffer: getCurrentOffer(state),
+  offersNearby: getOffersNearby(state),
 });
 
 export {DetailedOffer};
