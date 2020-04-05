@@ -5,7 +5,7 @@ import {offerShape, MAP_ICON_SIZE, ZOOM_VALUE, cityShape} from '../../const.js';
 
 class Map extends PureComponent {
   _renderMarkers() {
-    const {currentOffer, offers} = this.props;
+    const {currentOffer, offerOnHover, offers} = this.props;
 
     if (offers.length) {
       const placesCoords = offers.map((offer) => offer.coords);
@@ -28,6 +28,8 @@ class Map extends PureComponent {
 
       if (currentOffer) {
         leaflet.marker(currentOffer.coords, {icon: this.activeIcon}).addTo(this.map);
+      } else if (offerOnHover) {
+        leaflet.marker(offerOnHover.coords, {icon: this.activeIcon}).addTo(this.map);
       }
     }
   }
@@ -64,13 +66,13 @@ class Map extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    const {city, currentOffer} = this.props;
+    const {city, currentOffer, offerOnHover} = this.props;
 
-    if (prevProps.currentOffer !== currentOffer) {
-      this._renderMarkers();
-    } else if (prevProps.city !== city) {
+    if (prevProps.currentOffer !== currentOffer || prevProps.city !== city) {
       this.map.remove();
       this._renderMap();
+    } else if (prevProps.offerOnHover !== offerOnHover) {
+      this._renderMarkers();
     }
   }
 
@@ -90,6 +92,7 @@ Map.propTypes = {
   mapWidth: PropTypes.string.isRequired,
   offersCount: PropTypes.number,
   isBlockedZoom: PropTypes.bool.isRequired,
+  offerOnHover: PropTypes.shape(offerShape),
 };
 
 export default Map;

@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Offer from './offer.jsx';
-import {testOffers} from '../../mocks/tests.js';
+import {testOffers} from '../../test-mocks.js';
 import {Provider} from 'react-redux';
 import configureStore from "redux-mock-store";
 
@@ -19,6 +19,8 @@ it(`Should render Offer correctly`, () => {
           handlePlaceCardHover={() => {}}
           handlePlaceCardNameClick={() => {}}
           isCitiesClass={true}
+          onMouseEnter={() => {}}
+          onMouseLeave={() => {}}
         />
       </Provider>
   )
