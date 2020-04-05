@@ -22,6 +22,7 @@ it(`Should render Main correctly`, () => {
     },
     [NameSpace.DATA]: {
       allOffers: testOffers,
+      isLoaded: false,
     },
   });
 

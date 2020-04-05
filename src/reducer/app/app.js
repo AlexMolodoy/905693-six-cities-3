@@ -2,6 +2,7 @@ import {extend} from '../../utils.js';
 import {SortingType, cities} from '../../const.js';
 
 const initialState = {
+  serverError: false,
   city: cities[0],
   offerOnHover: null,
   sortType: SortingType.DEFAULT,
@@ -11,6 +12,7 @@ const ActionType = {
   CHANGE_CARD_ON_HOVER: `CHANGE_CARD_ON_HOVER`,
   CHANGE_CITY: `CHANGE_CITY`,
   SORT_OFFERS: `SORT_OFFERS`,
+  SHOW_ERROR: `SHOW_ERROR`,
 };
 
 const ActionCreator = {
@@ -26,6 +28,9 @@ const ActionCreator = {
   sortOffers: (sortType) => ({
     type: ActionType.SORT_OFFERS,
     payload: sortType
+  }),
+  showError: () => ({
+    type: ActionType.SHOW_ERROR
   }),
 };
 
@@ -44,6 +49,11 @@ const reducer = (state = initialState, action) => {
     case ActionType.SORT_OFFERS:
       return extend(state, {
         sortType: action.payload
+      });
+
+    case ActionType.SHOW_ERROR:
+      return extend(state, {
+        serverError: true,
       });
   }
 

@@ -8,8 +8,20 @@ import {Operation as DataOperation} from './reducer/data/data.js';
 import {createAPI} from './api.js';
 import thunk from 'redux-thunk';
 import {compose} from 'recompose';
+import {ActionCreator as AppActionCreator} from './reducer/app/app.js';
+import {Operation as UserOperation, ActionCreator as UserActionCreator} from './reducer/user/user.js';
+import {AuthorizationStatus} from './const.js';
 
-const api = createAPI(() => {});
+
+const onUnauthorized = () => {
+  store.dispatch(UserActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
+};
+
+const onServerError = () => {
+  store.dispatch(AppActionCreator.showError());
+};
+
+const api = createAPI(onUnauthorized, onServerError);
 
 
 const store = createStore(
@@ -20,7 +32,7 @@ const store = createStore(
     ));
 
 store.dispatch(DataOperation.loadOffers());
-
+store.dispatch(UserOperation.checkAuth());
 
 ReactDOM.render(
     <Provider store={store}>

@@ -12,4 +12,9 @@ const getSortType = (state) => {
   return state[NameSpace.APP].sortType;
 };
 
-export {getCity, getOfferOnHover, getSortType};
+const getServerError = (state) => {
+  return state[NameSpace.APP].serverError;
+};
+
+
+export {getCity, getOfferOnHover, getSortType, getServerError};
