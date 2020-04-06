@@ -4,7 +4,7 @@ import App from './app.jsx';
 import {testOffers, testComments} from '../../test-mocks.js';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
-import {SortingType} from '../../const.js';
+import {SortingType, AuthorizationStatus} from '../../const.js';
 import NameSpace from '../../reducer/name-space.js';
 
 const mockStore = configureStore([]);
@@ -18,6 +18,7 @@ it(`Render App`, () => {
     [NameSpace.APP]: {
       city: mockCity,
       sortType: SortingType.DEFAULT,
+      serverError: false,
     },
     [NameSpace.DATA]: {
       allOffers: testOffers,
@@ -25,6 +26,10 @@ it(`Render App`, () => {
       currentOffer: testOffers[0].offers[0],
       offersNearby: testOffers[0].offers,
     },
+    [NameSpace.USER]: {
+      authorizationStatus: AuthorizationStatus.NO_AUTH,
+      isSignInRequired: false,
+    }
   });
 
   const tree = renderer

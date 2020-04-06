@@ -11,6 +11,7 @@ it(`Reducer without additional parameters should return initial state`, () => {
     currentOffer: null,
     commentsList: [],
     offersNearby: [],
+    isLoaded: false,
   });
 });
 
@@ -20,6 +21,7 @@ it(`Reducer should return new offer object by given value`, () => {
     currentOffer: null,
     commentsList: [],
     offersNearby: [],
+    isLoaded: false,
   }, {
     type: ActionType.OPEN_DETAILED_OFFER,
     payload: testOffers[1],
@@ -28,6 +30,8 @@ it(`Reducer should return new offer object by given value`, () => {
     allOffers: [],
     commentsList: [],
     offersNearby: [],
+    isLoaded: false,
+
   });
 });
 
@@ -37,6 +41,7 @@ it(`Reducer should return commentsList by given value`, () => {
     currentOffer: null,
     commentsList: [],
     offersNearby: [],
+    isLoaded: false,
   }, {
     type: ActionType.GET_COMMENTS,
     payload: testComments,
@@ -45,6 +50,7 @@ it(`Reducer should return commentsList by given value`, () => {
     allOffers: [],
     commentsList: testComments,
     offersNearby: [],
+    isLoaded: false,
   });
 });
 
@@ -54,6 +60,7 @@ it(`Reducer should return an array of offers by given value`, () => {
     currentOffer: null,
     commentsList: [],
     offersNearby: [],
+    isLoaded: false,
   }, {
     type: ActionType.GET_OFFERS_NEARBY,
     payload: testOffers[1].offers,
@@ -62,6 +69,7 @@ it(`Reducer should return an array of offers by given value`, () => {
     allOffers: [],
     commentsList: [],
     offersNearby: testOffers[1].offers,
+    isLoaded: false,
   });
 });
 
@@ -71,6 +79,7 @@ it(`Reducer should return an array of offers by given value`, () => {
     currentOffer: null,
     commentsList: [],
     offersNearby: [],
+    isLoaded: false,
   }, {
     type: ActionType.LOAD_OFFERS,
     payload: testOffers,
@@ -78,6 +87,25 @@ it(`Reducer should return an array of offers by given value`, () => {
     currentOffer: null,
     allOffers: testOffers,
     commentsList: [],
+    isLoaded: false,
+    offersNearby: [],
+  });
+});
+
+it(`Reducer should change loading status to true`, () => {
+  expect(reducer({
+    allOffers: [],
+    currentOffer: null,
+    commentsList: [],
+    isLoaded: false,
+    offersNearby: [],
+  }, {
+    type: ActionType.GET_LOADED_STATE,
+  })).toEqual({
+    allOffers: [],
+    currentOffer: null,
+    commentsList: [],
+    isLoaded: true,
     offersNearby: [],
   });
 });
@@ -112,6 +140,12 @@ describe(`Action creators work correctly`, () => {
   });
 });
 
+it(`Action creator for enable load status returns correct action`, () => {
+  expect(ActionCreator.getLoadedState()).toEqual({
+    type: ActionType.GET_LOADED_STATE,
+  });
+});
+
 describe(`Operations work correctly`, () => {
   it(`Should make a correct API call to /hotels`, function () {
     const apiMock = new MockAdapter(api);
@@ -124,11 +158,15 @@ describe(`Operations work correctly`, () => {
 
     return offersLoader(dispatch, () => {}, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenCalledTimes(2);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.LOAD_OFFERS,
           payload: [{fake: true}],
         });
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
+          type: ActionType.GET_LOADED_STATE,
+        });
+
       });
   });
 

@@ -15,8 +15,16 @@ const TIMEOUT = 5000;
 const ZOOM_VALUE = 13;
 
 const Error = {
-  UNAUTHORIZED: 401
+  UNAUTHORIZED: 401,
+  BAD_REQUEST: 400,
+  SERVER_ERROR: 500,
 };
+
+const AuthorizationStatus = {
+  AUTH: `AUTH`,
+  NO_AUTH: `NO_AUTH`,
+};
+
 
 const SortingType = {
   DEFAULT: `Popular`,
@@ -110,4 +118,5 @@ export {
   sortTypes,
   TIMEOUT,
   ZOOM_VALUE,
+  AuthorizationStatus,
 };
