@@ -66,6 +66,7 @@ const transformOfferShape = (offer) => {
     rating: offer.rating,
     title: offer.title,
     type: offer.type,
+    isFavorite: offer.is_favorite,
   };
 };
 

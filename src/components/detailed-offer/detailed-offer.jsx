@@ -14,6 +14,7 @@ import ReviewsForm from '../reviews-form/reviews-form.jsx';
 import {Operation} from '../../reducer/user/user.js';
 import withBlockStatus from '../../hocs/with-block-status/with-block-status.js';
 
+
 const DetailedOffer = ({city, commentsList, offer, offersNearby, authorizationStatus, sendComment}) => {
   const ratingInPercent = getRatingInPercent(offer.rating);
   const offersNearbyToShow = offersNearby.slice(0, MAX_OFFERS_NEARBY);

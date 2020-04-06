@@ -1,84 +1,88 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {Router, Route, Switch} from 'react-router-dom';
 import Main from '../main/main.jsx';
-import DetailedOffer from '../detailed-offer/detailed-offer.jsx';
+// import DetailedOffer from '../detailed-offer/detailed-offer.jsx';
 import {connect} from 'react-redux';
-import {offerShape, AuthorizationStatus} from '../../const.js';
-import {getCurrentOffer, getOffers} from '../../reducer/data/selectors.js';
+// import {offerShape, AuthorizationStatus} from '../../const.js';
+import {getCurrentOffer} from '../../reducer/data/selectors.js';
 import {getAuthorizationStatus, getIsSignInRequired} from '../../reducer/user/selectors.js';
 import {Operation} from '../../reducer/user/user.js';
 import SignIn from '../sign-in/sign-in.jsx';
 import {getServerError} from '../../reducer/app/selectors.js';
-import Error from '../error/error.jsx';
+// import Error from '../error/error.jsx';
+import history from '../../history.js';
+import {AppRoute, offerShape} from '../../const.js';
 
 class App extends PureComponent {
-  _renderApp() {
-    const {
-      currentOffer,
-      isSignInRequired,
-      authorizationStatus,
-      login,
-      offers,
-      serverError,
-    } = this.props;
+  // _renderApp() {
+  //   const {
+  //     currentOffer,
+  //     isSignInRequired,
+  //     authorizationStatus,
+  //     login,
+  //     offers,
+  //     serverError,
+  //   } = this.props;
 
-    if (isSignInRequired && authorizationStatus === AuthorizationStatus.NO_AUTH) {
-      return (
-        <SignIn
-          handleFormSubmit={login}
-        />
-      );
-    }
+  //   if (isSignInRequired && authorizationStatus === AuthorizationStatus.NO_AUTH) {
+  //     return (
+  //       <SignIn
+  //         handleFormSubmit={login}
+  //       />
+  //     );
+  //   }
 
-    if (serverError) {
-      return (
-        <Error />
-      );
-    }
+  //   if (serverError) {
+  //     return (
+  //       <Error />
+  //     );
+  //   }
 
 
-    if (currentOffer === null) {
-      return (
-        <Main
-          offers={offers}
-        />
-      );
-    } else {
-      return (
-        <DetailedOffer
-          offer={currentOffer}
-        />
-      );
-    }
-  }
+  //   if (currentOffer === null) {
+  //     return (
+  //       <Main
+  //         offers={offers}
+  //       />
+  //     );
+  //   } else {
+  //     return (
+  //       <DetailedOffer
+  //         offer={currentOffer}
+  //       />
+  //     );
+  //   }
+  // }
 
   render() {
-    const {currentOffer, login} = this.props;
+    const {authorizationStatus, login} = this.props;
     return (
-      <BrowserRouter>
+      <Router
+        history={history}
+      >
         <Switch>
-          <Route exact path="/">
-            {this._renderApp()}
+          <Route exact path={AppRoute.ROOT}>
+            <Main />
           </Route>
-          <Route exact path="/dev-offer">
+          {/* <Route exact path="/dev-offer">
             <DetailedOffer
               offer={currentOffer}
             />
-          </Route>
+          </Route> */}
           <Route exact path="/dev-auth">
             <SignIn
+              authorizationStatus={authorizationStatus}
               handleFormSubmit={login}
             />
           </Route>
         </Switch>
-      </BrowserRouter>
+      </Router>
     );
   }
 }
 
 App.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.shape(offerShape)).isRequired,
   currentOffer: PropTypes.shape(offerShape),
   authorizationStatus: PropTypes.string.isRequired,
   serverError: PropTypes.bool.isRequired,
@@ -90,7 +94,6 @@ const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
   currentOffer: getCurrentOffer(state),
   isSignInRequired: getIsSignInRequired(state),
-  offers: getOffers(state),
   serverError: getServerError(state)
 });
 
