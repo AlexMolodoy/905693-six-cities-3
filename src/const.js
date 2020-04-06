@@ -14,6 +14,10 @@ const TIMEOUT = 5000;
 
 const ZOOM_VALUE = 13;
 
+const MAX_COMMENT_LENGTH = 300;
+
+const MIN_COMMENT_LENGTH = 50;
+
 const Error = {
   UNAUTHORIZED: 401,
   BAD_REQUEST: 400,
@@ -119,4 +123,6 @@ export {
   TIMEOUT,
   ZOOM_VALUE,
   AuthorizationStatus,
+  MIN_COMMENT_LENGTH,
+  MAX_COMMENT_LENGTH,
 };
