@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import App from './components/app/app.jsx';
 import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
-import reducer from './reducer/app/app.js';
+import reducer from './reducer/reducer.js';
 import {Operation as DataOperation} from './reducer/data/data.js';
 import {createAPI} from './api.js';
 import thunk from 'redux-thunk';
@@ -22,7 +22,6 @@ const onServerError = () => {
 };
 
 const api = createAPI(onUnauthorized, onServerError);
-
 
 const store = createStore(
     reducer,
