@@ -21,6 +21,7 @@ it(`Should render Offer correctly`, () => {
           isCitiesClass={true}
           onMouseEnter={() => {}}
           onMouseLeave={() => {}}
+          handleBookmarkButtonClick={() => {}}
         />
       </Provider>
   )

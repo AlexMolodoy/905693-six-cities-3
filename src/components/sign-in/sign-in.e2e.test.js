@@ -6,6 +6,8 @@ import configureStore from "redux-mock-store";
 import SignIn from './sign-in';
 import NameSpace from '../../reducer/name-space';
 import {AuthorizationStatus} from '../../const';
+import {Router} from "react-router-dom";
+import history from "../../history.js";
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -23,11 +25,14 @@ it(`Click to submit form calls callbalk`, () => {
   const handleFormSubmitMock = jest.fn();
 
   const signInPage = mount(
-      <Provider store={store}>
-        <SignIn
-          handleFormSubmit={handleFormSubmitMock}
-        />
-      </Provider>
+      <Router history={history}>
+        <Provider store={store}>
+          <SignIn
+            authorizationStatus={AuthorizationStatus.NO_AUTH}
+            handleFormSubmit={handleFormSubmitMock}
+          />
+        </Provider>
+      </Router>
   );
   signInPage.find(`.login__form`).simulate(`submit`);
   expect(handleFormSubmitMock).toHaveBeenCalledTimes(1);

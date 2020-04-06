@@ -52,6 +52,17 @@ const Feature = {
   WASHING_MACHINE: `Washing machine`,
 };
 
+const AppRoute = {
+  LOGIN: `/login`,
+  ROOT: `/`,
+  FAVORITES: `/favorites`,
+};
+
+const FavoriteRequiredAction = {
+  ADD: 1,
+  DELETE: 0
+};
+
 const cityShape = {
   name: PropTypes.string.isRequired,
   coords: PropTypes.arrayOf(PropTypes.number.isRequired),
@@ -70,6 +81,7 @@ const offerShape = {
   }),
   id: PropTypes.number.isRequired,
   images: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  isFavorite: PropTypes.bool.isRequired,
   isPremium: PropTypes.bool.isRequired,
   price: PropTypes.number.isRequired,
   rating: PropTypes.number.isRequired,
@@ -117,4 +129,6 @@ export {
   AuthorizationStatus,
   MIN_COMMENT_LENGTH,
   MAX_COMMENT_LENGTH,
+  AppRoute,
+  FavoriteRequiredAction,
 };
