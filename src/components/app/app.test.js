@@ -25,6 +25,7 @@ it(`Render App for unauthorized use`, () => {
       commentsList: testComments,
       currentOffer: testOffers[0].offers[0],
       offersNearby: testOffers[0].offers,
+      isLoaded: true,
     },
     [NameSpace.USER]: {
       authorizationStatus: AuthorizationStatus.NO_AUTH,
@@ -55,7 +56,7 @@ it(`Render App for authorized user`, () => {
       allOffers: testOffers,
       commentsList: testComments,
       currentOffer: testOffers[0].offers[0],
-      isLoaded: false,
+      isLoaded: true,
       offersNearby: testOffers[0].offers,
     },
     [NameSpace.USER]: {
@@ -71,6 +72,71 @@ it(`Render App for authorized user`, () => {
         <App />
       </Provider>
   )
+    .toJSON();
+
+  expect(tree).toMatchSnapshot();
+});
+
+
+it(`Render App when data is not yet loaded`, () => {
+  const store = mockStore({
+    [NameSpace.APP]: {
+      city: mockCity,
+      serverError: false,
+      sortType: SortingType.DEFAULT,
+    },
+    [NameSpace.DATA]: {
+      allOffers: testOffers,
+      commentsList: testComments,
+      currentOffer: testOffers[0].offers[0],
+      isLoaded: false,
+      offersNearby: testOffers[0].offers,
+    },
+    [NameSpace.USER]: {
+      authorizationStatus: AuthorizationStatus.NO_AUTH,
+      isReviewFormBlocked: false,
+      isSignInRequired: false,
+    }
+  });
+
+  const tree = renderer
+    .create(
+        <Provider store={store}>
+          <App />
+        </Provider>
+    )
+    .toJSON();
+
+  expect(tree).toMatchSnapshot();
+});
+
+it(`Render App when server error`, () => {
+  const store = mockStore({
+    [NameSpace.APP]: {
+      city: mockCity,
+      serverError: true,
+      sortType: SortingType.DEFAULT,
+    },
+    [NameSpace.DATA]: {
+      allOffers: testOffers,
+      commentsList: testComments,
+      currentOffer: testOffers[0].offers[0],
+      isLoaded: false,
+      offersNearby: testOffers[0].offers,
+    },
+    [NameSpace.USER]: {
+      authorizationStatus: AuthorizationStatus.NO_AUTH,
+      isReviewFormBlocked: false,
+      isSignInRequired: false,
+    }
+  });
+
+  const tree = renderer
+    .create(
+        <Provider store={store}>
+          <App />
+        </Provider>
+    )
     .toJSON();
 
   expect(tree).toMatchSnapshot();

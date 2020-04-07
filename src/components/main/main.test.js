@@ -6,8 +6,7 @@ import configureStore from 'redux-mock-store';
 import {SortingType, AuthorizationStatus} from '../../const.js';
 import {testOffers} from '../../test-mocks.js';
 import NameSpace from '../../reducer/name-space.js';
-import {Router} from "react-router-dom";
-import history from "../../history.js";
+import {BrowserRouter} from "react-router-dom";
 
 const mockStore = configureStore([]);
 
@@ -32,11 +31,11 @@ it(`Should render Main with not yet loaded offers correctly`, () => {
 
   const tree = renderer
     .create(
-        <Router history={history}>
+        <BrowserRouter>
           <Provider store={store}>
             <Main />
           </Provider>
-        </Router>
+        </BrowserRouter>
     )
     .toJSON();
 
@@ -60,11 +59,11 @@ it(`Should render Main with offers correctly`, () => {
 
   const tree = renderer
     .create(
-        <Router history={history}>
+        <BrowserRouter>
           <Provider store={store}>
             <Main />
           </Provider>
-        </Router>
+        </BrowserRouter>
     )
     .toJSON();
 
@@ -88,11 +87,11 @@ it(`Should render Main for authorized users correctly`, () => {
 
   const tree = renderer
     .create(
-        <Router history={history}>
+        <BrowserRouter>
           <Provider store={store}>
             <Main />
           </Provider>
-        </Router>
+        </BrowserRouter>
     )
     .toJSON();
 

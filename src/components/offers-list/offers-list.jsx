@@ -10,11 +10,10 @@ import {Operation} from '../../reducer/data/data.js';
 import withShowControl from '../../hocs/with-show-control/with-show-control.js';
 import {getSortType} from '../../reducer/app/selectors.js';
 
-const OffersList = ({handleBookmarkButtonClick, city, handlePlaceCardHover, handlePlaceCardNameClick, handleSortTypeClick, isCitiesClass, offers, sortType}) => {
+const OffersList = ({handleBookmarkButtonClick, city, placeCardType, handlePlaceCardHover, handleSortTypeClick, isCitiesClass, offers, sortType}) => {
   const sortedOffers = JSON.parse(JSON.stringify(offers));
   const SortingWrapped = withShowControl(Sorting);
 
-  const handleCardNameClick = (offer) => () => handlePlaceCardNameClick(offer);
   const handleCardHover = (offer) => () => handlePlaceCardHover(offer);
   const handleButtonClick = (offer) => () => handleBookmarkButtonClick(offer);
 
@@ -47,10 +46,9 @@ const OffersList = ({handleBookmarkButtonClick, city, handlePlaceCardHover, hand
           {sortedOffers.map((it) => (
             <Offer
               handleBookmarkButtonClick={handleButtonClick(it)}
-              isCitiesClass={isCitiesClass}
+              placeCardType={placeCardType}
               key={it.id}
               offer={it}
-              handlePlaceCardNameClick={handleCardNameClick(it)}
               onMouseEnter={handleCardHover(it)}
               onMouseLeave={handleCardHover(null)}
             />
@@ -66,7 +64,7 @@ OffersList.propTypes = {
   city: PropTypes.shape(cityShape).isRequired,
   sortType: PropTypes.string.isRequired,
   handlePlaceCardHover: PropTypes.func.isRequired,
-  handlePlaceCardNameClick: PropTypes.func.isRequired,
+  placeCardType: PropTypes.string.isRequired,
   handleSortTypeClick: PropTypes.func.isRequired,
   handleBookmarkButtonClick: PropTypes.func.isRequired,
 };
@@ -80,17 +78,12 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.changeCardOnHover(offer));
   },
 
-  handlePlaceCardNameClick(offer) {
-    dispatch(Operation.openDetailedOffer(offer));
-
-  },
-
   handleSortTypeClick(selectedSortType) {
     dispatch(ActionCreator.sortOffers(selectedSortType));
   },
 
   handleBookmarkButtonClick(offer) {
-    dispatch(Operation.toggleIsFavorite(offer));
+    dispatch(Operation.toggleFavorite(offer));
     dispatch(Operation.loadOffers());
   },
 });

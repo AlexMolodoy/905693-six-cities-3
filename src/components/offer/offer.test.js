@@ -4,27 +4,76 @@ import Offer from './offer.jsx';
 import {testOffers} from '../../test-mocks.js';
 import {Provider} from 'react-redux';
 import configureStore from "redux-mock-store";
+import {BrowserRouter} from 'react-router-dom';
+import {PlaceCardType} from '../../const.js';
+
 
 const mockStore = configureStore([]);
 
-it(`Should render Offer correctly`, () => {
+it(`Should render Offer correctly with class cities`, () => {
   const store = mockStore({});
 
 
   const tree = renderer
   .create(
-      <Provider store={store}>
-        <Offer
-          offer={testOffers[0].offers[0]}
-          handlePlaceCardHover={() => {}}
-          handlePlaceCardNameClick={() => {}}
-          isCitiesClass={true}
-          onMouseEnter={() => {}}
-          onMouseLeave={() => {}}
-          handleBookmarkButtonClick={() => {}}
-        />
-      </Provider>
+
+      <BrowserRouter>
+        <Provider store={store}>
+          <Offer
+            offer={testOffers[0].offers[0]}
+            onMouseEnter={() => {}}
+            onMouseLeave={() => {}}
+            handleBookmarkButtonClick={() => {}}
+            handlePlaceCardHover={() => {}}
+            placeCardType={PlaceCardType.CITIES}
+          />
+        </Provider>
+      </BrowserRouter>
   )
+    .toJSON();
+
+  expect(tree).toMatchSnapshot();
+});
+
+it(`Should render Offer correctly with class near-places`, () => {
+  const store = mockStore({});
+  const tree = renderer
+    .create(
+        <BrowserRouter>
+          <Provider store={store}>
+            <Offer
+              offer={testOffers[0].offers[0]}
+              onMouseEnter={() => {}}
+              onMouseLeave={() => {}}
+              handleBookmarkButtonClick={() => {}}
+              handlePlaceCardHover={() => {}}
+              placeCardType={PlaceCardType.NEAR_PLACES}
+            />
+          </Provider>
+        </BrowserRouter>
+    )
+    .toJSON();
+
+  expect(tree).toMatchSnapshot();
+});
+
+it(`Should render Offer correctly with class favorite`, () => {
+  const store = mockStore({});
+  const tree = renderer
+    .create(
+        <BrowserRouter>
+          <Provider store={store}>
+            <Offer
+              offer={testOffers[0].offers[0]}
+              onMouseEnter={() => {}}
+              onMouseLeave={() => {}}
+              handleBookmarkButtonClick={() => {}}
+              handlePlaceCardHover={() => {}}
+              placeCardType={PlaceCardType.FAVORITES}
+            />
+          </Provider>
+        </BrowserRouter>
+    )
     .toJSON();
 
   expect(tree).toMatchSnapshot();

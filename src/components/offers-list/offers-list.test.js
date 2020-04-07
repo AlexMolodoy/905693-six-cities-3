@@ -5,11 +5,13 @@ import {testOffers} from '../../test-mocks.js';
 import NameSpace from '../../reducer/name-space.js';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
-import {SortingType} from '../../const.js';
+import {SortingType, PlaceCardType} from '../../const.js';
+import {BrowserRouter} from 'react-router-dom';
+
 
 const mockStore = configureStore([]);
 
-it(`Should render Offers list correctly`, () => {
+it(`Should render Offers list correctly with cities class`, () => {
   const store = mockStore({
     [NameSpace.APP]: {
       sortType: SortingType.DEFAULT,
@@ -18,14 +20,41 @@ it(`Should render Offers list correctly`, () => {
 
   const tree = renderer
   .create(
-      <Provider store={store}>
-        <OffersList
-          city={testOffers[0].city}
-          isCitiesClass={true}
-          offers={testOffers[0].offers}
-        />
-      </Provider>
+      <BrowserRouter>
+        <Provider store={store}>
+          <OffersList
+            city={testOffers[0].city}
+            isCitiesClass={true}
+            offers={testOffers[0].offers}
+            placeCardType={PlaceCardType.CITIES}
+          />
+        </Provider>
+      </BrowserRouter>
   )
+    .toJSON();
+
+  expect(tree).toMatchSnapshot();
+});
+
+it(`Should render Offers list correctly with near-places class`, () => {
+  const store = mockStore({
+    [NameSpace.APP]: {
+      sortType: SortingType.DEFAULT,
+    },
+  });
+  const tree = renderer
+    .create(
+        <BrowserRouter>
+          <Provider store={store}>
+            <OffersList
+              city={testOffers[0].city}
+              isCitiesClass={true}
+              offers={testOffers[0].offers}
+              placeCardType={PlaceCardType.NEAR_PLACES}
+            />
+          </Provider>
+        </BrowserRouter>
+    )
     .toJSON();
 
   expect(tree).toMatchSnapshot();

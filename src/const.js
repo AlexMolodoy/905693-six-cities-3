@@ -9,6 +9,7 @@ const TIMEOUT = 5000;
 const ZOOM_VALUE = 13;
 const MAX_COMMENT_LENGTH = 300;
 const MIN_COMMENT_LENGTH = 50;
+const RADIX = 10;
 
 const Error = {
   UNAUTHORIZED: 401,
@@ -52,10 +53,24 @@ const Feature = {
   WASHING_MACHINE: `Washing machine`,
 };
 
+const FavoriteImageSize = {
+  WIDTH: `150`,
+  HEIGHT: `110`,
+};
+
+const PlaceCardType = {
+  CITIES: `cities`,
+  FAVORITES: `favorites`,
+  NEAR_PLACES: `near-places`,
+  DEFAULT: ``,
+};
+
+
 const AppRoute = {
   LOGIN: `/login`,
   ROOT: `/`,
   FAVORITES: `/favorites`,
+  OFFER: `/offer`,
 };
 
 const FavoriteRequiredAction = {
@@ -87,6 +102,11 @@ const offerShape = {
   rating: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   type: PropTypes.oneOf([PlaceType.APARTMENT, PlaceType.HOTEL, PlaceType.HOUSE, PlaceType.ROOM]).isRequired,
+};
+
+const favoritesShape = {
+  city: PropTypes.string.isRequired,
+  offers: PropTypes.arrayOf(PropTypes.shape(offerShape).isRequired).isRequired,
 };
 
 const userShape = {
@@ -131,4 +151,8 @@ export {
   MAX_COMMENT_LENGTH,
   AppRoute,
   FavoriteRequiredAction,
+  FavoriteImageSize,
+  favoritesShape,
+  PlaceCardType,
+  RADIX,
 };

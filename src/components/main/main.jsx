@@ -6,7 +6,7 @@ import Cities from '../cities/cities.jsx';
 import {connect} from 'react-redux';
 import {getOffers, getLoadedState} from '../../reducer/data/selectors.js';
 import {getCity, getOfferOnHover} from '../../reducer/app/selectors.js';
-import {offerShape, cityShape} from '../../const.js';
+import {offerShape, cityShape, PlaceCardType} from '../../const.js';
 import Header from '../header/header.jsx';
 
 const Main = ({city, offers, offerOnHover, isLoaded}) => {
@@ -29,6 +29,7 @@ const Main = ({city, offers, offerOnHover, isLoaded}) => {
               city={city}
               isCitiesClass={true}
               offers={offers}
+              placeCardType={PlaceCardType.CITIES}
             />
             <div className="cities__right-section">
               {offers.length ?

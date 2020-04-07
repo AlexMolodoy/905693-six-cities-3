@@ -1,11 +1,12 @@
-import {AuthorizationStatus} from '../../const.js';
+import {AuthorizationStatus, Error} from '../../const.js';
 import {extend, transformCommentShape} from '../../utils.js';
-import {getCurrentOffer} from '../data/selectors.js';
+import {getCurrentId} from '../data/selectors.js';
 import {ActionCreator as DataActionCreator} from '../data/data.js';
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
   isSignInRequired: false,
+  favorites: [],
   userName: null,
 };
 
@@ -13,9 +14,15 @@ const ActionType = {
   OPEN_SIGN_IN_PAGE: `OPEN_SIGN_IN_PAGE`,
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   SAVE_USERNAME: `SAVE_USERNAME`,
+  GET_FAVORITES: `GET_FAVORITES`,
 };
 
 const ActionCreator = {
+  getFavorites: (offers) => ({
+    type: ActionType.GET_FAVORITES,
+    payload: offers
+  }),
+
   openSignInPage: (status) => {
     return {
       type: ActionType.OPEN_SIGN_IN_PAGE,
@@ -46,7 +53,16 @@ const Operation = {
         dispatch(ActionCreator.saveUserName(response.data.email));
       })
       .catch((err) => {
-        throw err;
+        if (err.response.status === Error.UNAUTHORIZED) {
+          dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
+        }
+      });
+  },
+
+  getFavorites: () => (dispatch, getState, api) => {
+    return api.get(`/favorite`)
+      .then((response) => {
+        dispatch(ActionCreator.getFavorites(response.data));
       });
   },
 
@@ -65,7 +81,7 @@ const Operation = {
   },
   sendComment: (formData, blockForm, onError) => (dispatch, getState, api) => {
     const state = getState();
-    const offerId = getCurrentOffer(state).id;
+    const offerId = getCurrentId(state);
     blockForm();
     return api.post(`/comments/${offerId}`, {
       comment: formData.comment,
@@ -87,6 +103,12 @@ const Operation = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+
+    case ActionType.GET_FAVORITES:
+      return extend(state, {
+        favorites: action.payload,
+      });
+
     case ActionType.REQUIRED_AUTHORIZATION:
       return extend(state, {
         authorizationStatus: action.payload,

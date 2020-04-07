@@ -9,6 +9,7 @@ const initialState = {
   commentsList: [],
   offersNearby: [],
   isLoaded: false,
+  currentId: null,
 };
 
 const ActionType = {
@@ -16,7 +17,7 @@ const ActionType = {
   GET_COMMENTS: `GET_COMMENTS`,
   GET_OFFERS_NEARBY: `GET_OFFERS_NEARBY`,
   LOAD_OFFERS: `LOAD_OFFERS`,
-  OPEN_DETAILED_OFFER: `OPEN_DETAILED_OFFER`,
+  SAVE_ID: `SAVE_ID`,
 };
 
 const ActionCreator = {
@@ -35,9 +36,9 @@ const ActionCreator = {
     type: ActionType.LOAD_OFFERS,
     payload: offers
   }),
-  openDetailedOffer: (offer) => ({
-    type: ActionType.OPEN_DETAILED_OFFER,
-    payload: offer
+  saveId: (id) => ({
+    type: ActionType.SAVE_ID,
+    payload: id
   }),
 };
 
@@ -50,21 +51,22 @@ const Operation = {
     });
   },
 
-  openDetailedOffer: (offer) => (dispatch, getState, api) => {
-    return axios.all([api.get(`comments/${offer.id}`),
-      api.get(`hotels/${offer.id}/nearby`)])
+  getDetailedData: (id) => (dispatch, getState, api) => {
+    return axios.all([api.get(`comments/${id}`),
+      api.get(`hotels/${id}/nearby`)])
     .then(axios.spread((firstResponse, secondResponse) => {
       const transformedComments = firstResponse.data.map((it) => transformCommentShape(it));
       dispatch(ActionCreator.getComments(transformedComments));
       const transformedOffers = secondResponse.data.map((it) => transformOfferShape(it));
       dispatch(ActionCreator.getOffersNearby(transformedOffers));
-      dispatch(ActionCreator.openDetailedOffer(offer));
+      dispatch(ActionCreator.saveId(id));
     }));
   },
 
-  toggleIsFavorite: (offer) => (dispatch, getState, api) => {
+  toggleFavorite: (offer) => (dispatch, getState, api) => {
     const status = offer.isFavorite ? FavoriteRequiredAction.DELETE : FavoriteRequiredAction.ADD;
     return api.post(`/favorite/${offer.id}/${status}`)
+    .then(dispatch(Operation.loadOffers()))
     .catch((err) => {
       if (err.response.status === Error.UNAUTHORIZED) {
         history.push(AppRoute.LOGIN);
@@ -90,9 +92,9 @@ const reducer = (state = initialState, action) => {
         allOffers: action.payload,
       });
 
-    case ActionType.OPEN_DETAILED_OFFER:
+    case ActionType.SAVE_ID:
       return extend(state, {
-        currentOffer: action.payload,
+        currentId: action.payload,
       });
 
     case ActionType.GET_LOADED_STATE:
