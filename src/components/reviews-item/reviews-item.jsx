@@ -25,7 +25,7 @@ const ReviewsItem = ({comment}) => {
           </div>
         </div>
         <p className="reviews__text">
-          A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
+          {comment.text}
         </p>
         <time className="reviews__time" dateTime={moment(comment.date).format(`YYYY-MM-DD`)}>{moment(comment.date).format(`MMMM YYYY`)}</time>
       </div>

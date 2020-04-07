@@ -384,7 +384,11 @@ exports[`Render App for unauthorized use 1`] = `
 </div>
 `;
 
-exports[`Render App when data is not yet loaded 1`] = `null`;
+exports[`Render App when data is not yet loaded 1`] = `
+<p>
+  Loading
+</p>
+`;
 
 exports[`Render App when server error 1`] = `
 <header

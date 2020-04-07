@@ -54,7 +54,7 @@ it(`Should render DetailedOffer for unauthorized user correctly`, () => {
     [NameSpace.DATA]: {
       allOffers: testOffersServerShape,
       commentsList: testComments,
-      offersNearby: testOffers[1].offers,
+      offersNearby: testOffers[0].offers,
     },
     [NameSpace.USER]: {
       authorizationStatus: AuthorizationStatus.NO_AUTH,

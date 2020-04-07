@@ -15,7 +15,7 @@ import {Operation as DataOperation} from '../../reducer/data/data.js';
 import Favorites from '../favorites/favorites.jsx';
 import PrivateRoute from '../private-route/private-route.jsx';
 import {getLoadedState} from '../../reducer/data/selectors.js';
-import EmptyContainer from '../empty-container/empty-container.jsx';
+import Loading from '../loading/loading.jsx';
 
 class App extends PureComponent {
 
@@ -28,7 +28,7 @@ class App extends PureComponent {
       );
     } else if (!isLoaded) {
       return (
-        <EmptyContainer />
+        <Loading />
       );
     }
     return (
