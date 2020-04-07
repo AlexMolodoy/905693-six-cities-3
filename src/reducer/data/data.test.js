@@ -5,7 +5,6 @@ import {testOffers, testComments} from '../../test-mocks.js';
 
 const api = createAPI(() => {});
 
-
 it(`Reducer should return new offer id by given value`, () => {
   expect(reducer({
     allOffers: [],
